@@ -32,14 +32,14 @@ const Mainpage = () => {
         exp.id === selectedExpense.id ? selectedExpense : exp
       )
     );
-    sessionStorage.setItem("expenses", JSON.stringify(expenses));
+    localStorage.setItem("expenses", JSON.stringify(expenses));
     setShowModal(false);
   };
 
   // Load data from storage on mount
   useEffect(() => {
     const savedExpenses =
-      JSON.parse(sessionStorage.getItem("expenses")) || [];
+      JSON.parse(localStorage.getItem("expenses")) || [];
     const savedBalance = localStorage.getItem("balance");
     const savedName = localStorage.getItem("userName");
 
@@ -56,7 +56,10 @@ const Mainpage = () => {
     if (userName) {
       localStorage.setItem("userName", userName.toString());
     }
-  }, [balance, userName]);
+if (expenses.length > 0) {
+    localStorage.setItem("expenses", JSON.stringify(expenses));
+  }   
+  }, [balance, userName, expenses]);
 
   // Handle initial balance + name submit
   const handleSetBalance = (e) => {
@@ -100,8 +103,8 @@ const Mainpage = () => {
     const updatedExpenses = [...expenses, newExpense];
     setExpenses(updatedExpenses);
 
-    // Save in sessionStorage
-    sessionStorage.setItem("expenses", JSON.stringify(updatedExpenses));
+    // Save in localStorage
+    localStorage.setItem("expenses", JSON.stringify(updatedExpenses));
 
     setTitle("");
     setAmount("");
@@ -111,7 +114,7 @@ const Mainpage = () => {
   const handleDelete = (id) => {
     const updatedExpenses = expenses.filter((exp) => exp.id !== id);
     setExpenses(updatedExpenses);
-    sessionStorage.setItem("expenses", JSON.stringify(updatedExpenses));
+    localStorage.setItem("expenses", JSON.stringify(updatedExpenses));
   };
 
   // Calculate total spent
@@ -167,7 +170,7 @@ const Mainpage = () => {
     <section className="container-fluid vh-100 d-flex justify-content-center align-items-center bg-dark">
       <div className="main-page p-4 rounded shadow bg-secondary w-75">
         <div className="main-content">
-          <h3 className="text-center text-white">Murali's Expense Calculator</h3>
+          <h3 className="text-center text-white header-title">Murali's Expense Calculator</h3>
           <div className="d-flex justify-content-between text-white fw-bold mb-3 flex-wrap gap-3">
             <span>Welcome: {userName}</span>
             <IPLocationFetcher />

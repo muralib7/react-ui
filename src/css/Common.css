@@ -127,3 +127,6 @@ table td {
 .search-filter{
     max-width: 300px;
 }
+.main-content .header-title{
+  background: linear-gradient(90deg, #ff8a00, #e52e71);
+}
