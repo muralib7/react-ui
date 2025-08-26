@@ -180,8 +180,8 @@ if (expenses.length > 0) {
           </div>
 
           {/* Add Expense Form */}
-          <form onSubmit={handleAddExpense} className="d-flex flex-column gap-2">
-            <div className="text-white">
+          <form onSubmit={handleAddExpense} className="d-flex justify-content-center align-items-center flex-column ">
+            <div className="text-white "> 
               <label htmlFor="title">Title</label>
               <input
                 type="text"
@@ -225,6 +225,7 @@ if (expenses.length > 0) {
             <table className="table text-white table-striped mt-4">
               <thead>
                 <tr>
+                  <th>S.No</th>
                   <th>Title</th>
                   <th>Amount</th>
                   <th>Date</th>
@@ -232,7 +233,7 @@ if (expenses.length > 0) {
                   <th>Action</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="table-rows">
                 {filteredExpenses.length === 0 ? (
                   <tr>
                     <td colSpan={5} className="text-center">
@@ -250,8 +251,9 @@ if (expenses.length > 0) {
                     </td>
                   </tr>
                 ) : (
-                  filteredExpenses.map((exp) => (
-                    <tr key={exp.id}>
+                  filteredExpenses.map((exp,index) => (
+                    <tr key={exp.id} >
+                      <td>{index + 1}</td> 
                       <td>{exp.title}</td>
                       <td>₹ {exp.amount}</td>
                       <td>{exp.date}</td>
@@ -277,7 +279,6 @@ if (expenses.length > 0) {
             </table>
           </div>
 
-          {/* Common Modal */}
           {showModal && (
             <Commonmodal
               show={showModal}
