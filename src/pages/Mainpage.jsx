@@ -129,9 +129,9 @@ const Mainpage = () => {
   const filteredExpenses = expenses.filter((exp) =>
     exp.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
-  if(filteredExpenses.length === 0){
-    toast.error("No expenses found for the search query!");
-  }
+  // if(filteredExpenses.length === 0){
+  //   toast.error("No expenses found for the search query!");
+  // }
   // If no balance set → show initial balance + name screen
   if (balance === null || !userName) {
     return (
@@ -167,7 +167,7 @@ const Mainpage = () => {
     <section className="container-fluid vh-100 d-flex justify-content-center align-items-center bg-dark">
       <div className="main-page p-4 rounded shadow bg-secondary w-75">
         <div className="main-content">
-          <h3 className="text-center text-white">Expense Calculator</h3>
+          <h3 className="text-center text-white">Murali's Expense Calculator</h3>
           <div className="d-flex justify-content-between text-white fw-bold mb-3 flex-wrap gap-3">
             <span>Welcome: {userName}</span>
             <IPLocationFetcher />
